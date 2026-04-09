@@ -1,0 +1,582 @@
+import React from "react";
+import { motion } from "framer-motion";
+import {
+  Star,
+  Phone,
+  MapPin,
+  Clock3,
+  Sparkles,
+  Scissors,
+  Brush,
+  HeartHandshake,
+  CheckCircle2,
+  MessageCircle,
+  ArrowRight,
+  BadgeCheck,
+  ChevronRight,
+  Mail,
+} from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+
+const GOOGLE_MAPS_URL =
+  "https://www.google.com/maps/search/?api=1&query=Pg.+de+St.+Gervasi,+36,+08022+Barcelona";
+const PHONE = "938 48 86 94";
+const PHONE_LINK = "tel:+34938488694";
+const WHATSAPP_LINK =
+  "https://wa.me/34938488694?text=Hola%2C%20quiero%20pedir%20cita%20en%20Look%20Infinito";
+const EMAIL = "yanirapaniaguard@hotmail.com";
+
+const gallery = [
+  {
+    title: "Espacio y ambiente",
+    subtitle: "Imagen pública del salón",
+    image:
+      "https://cdn1.treatwell.net/images/view/v2.i8210124.w1080.h720.xCB6997BB/",
+  },
+  {
+    title: "Look Infinito",
+    subtitle: "Fachada / referencia visual pública",
+    image:
+      "https://cdn1.treatwell.net/images/view/v2.i1644952.w1080.h720.x972F7369/",
+  },
+  {
+    title: "Resultados y estilo",
+    subtitle: "Bloque preparado para sustituir por fotos reales",
+    image: null,
+  },
+];
+
+const services = [
+  {
+    icon: Brush,
+    title: "Coloración y mechas",
+    text: "Uno de los servicios más mencionados por clientas. Ideal para cambios de look, retoques y color trabajado con criterio profesional.",
+  },
+  {
+    icon: Scissors,
+    title: "Corte y peinado",
+    text: "Cortes para mujer y hombre, peinados y acabados adaptados al estilo que buscas, desde mantenimiento hasta cambio de imagen.",
+  },
+  {
+    icon: Sparkles,
+    title: "Keratina y tratamientos capilares",
+    text: "Tratamientos para controlar encrespamiento, aportar brillo y mejorar la textura del cabello.",
+  },
+  {
+    icon: HeartHandshake,
+    title: "Estética y cuidado complementario",
+    text: "Manicura, pedicura, maquillaje, recogidos y otros servicios de estética según disponibilidad del salón.",
+  },
+];
+
+const highlights = [
+  "4,8/5 en Google",
+  "64 reseñas públicas",
+  "Ubicación en Sant Gervasi",
+  "Teléfono directo para citas",
+  "Especialistas en mechas, color y keratina",
+  "Atención cercana y personalizada",
+];
+
+const testimonials = [
+  {
+    name: "Lucía Rivas Leotaud",
+    quote:
+      "Trabajan espectacular, mejor de lo que les pedí, muy profesionales y cuidadosos con mi cabello. Súper recomendados.",
+    badge: "Reseña destacada",
+  },
+  {
+    name: "Marta Plana Dropez",
+    quote:
+      "Extraordinario servicio y profesionales. Muy contenta con mi color y corte cada vez que voy. Además te hacen sentir como en casa.",
+    badge: "Color + corte",
+  },
+  {
+    name: "Resumen de clientes",
+    quote:
+      "Super contenta con el resultado de mis mechas" · "Siempre dan la mejor opción" · "Muy contento y volveré.",
+    badge: "Opiniones frecuentes",
+  },
+  {
+    name: "Mención local",
+    quote:
+      "Yanira ha sido mi peluquera por años ya. Es espectacular, manos de oro, súper profesional y muy detallista en su trabajo.",
+    badge: "Confianza recurrente",
+  },
+];
+
+const faqs = [
+  {
+    q: "¿Dónde está Look Infinito?",
+    a: "En Pg. de St. Gervasi, 36, 08022 Barcelona, en la zona de Sant Gervasi y cerca de los Jardins de la Tamarita.",
+  },
+  {
+    q: "¿Qué servicios destacan más?",
+    a: "Coloración, mechas, cortes, peinados, tratamientos capilares como keratina y servicios de estética como manicura y pedicura.",
+  },
+  {
+    q: "¿Cómo puedo reservar cita?",
+    a: "La forma más directa es llamar al 938 48 86 94 o escribir por WhatsApp para consultar disponibilidad.",
+  },
+  {
+    q: "¿Trabajan con marcas profesionales?",
+    a: "Las fichas públicas mencionan marcas profesionales del sector como L'Oréal Professionnel y otras referencias de cuidado capilar premium.",
+  },
+];
+
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "HairSalon",
+  name: "Look Infinito Peluquería y Estética",
+  image: gallery.filter((item) => item.image).map((item) => item.image),
+  telephone: "+34 938 48 86 94",
+  email: EMAIL,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Pg. de St. Gervasi, 36",
+    postalCode: "08022",
+    addressLocality: "Barcelona",
+    addressRegion: "Barcelona",
+    addressCountry: "ES",
+  },
+  areaServed: "Barcelona",
+  priceRange: "€€",
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "4.8",
+    reviewCount: "64",
+  },
+  sameAs: [GOOGLE_MAPS_URL],
+  makesOffer: [
+    { "@type": "Offer", itemOffered: { "@type": "Service", name: "Coloración y mechas" } },
+    { "@type": "Offer", itemOffered: { "@type": "Service", name: "Corte y peinado" } },
+    { "@type": "Offer", itemOffered: { "@type": "Service", name: "Tratamiento capilar keratina" } },
+    { "@type": "Offer", itemOffered: { "@type": "Service", name: "Manicura y pedicura" } },
+  ],
+};
+
+function SectionTitle({ eyebrow, title, text }) {
+  return (
+    <div className="max-w-3xl">
+      <p className="mb-3 text-sm font-semibold uppercase tracking-[0.25em] text-rose-700/80">
+        {eyebrow}
+      </p>
+      <h2 className="text-3xl font-semibold tracking-tight text-stone-900 md:text-5xl">
+        {title}
+      </h2>
+      {text ? (
+        <p className="mt-4 text-base leading-7 text-stone-600 md:text-lg">{text}</p>
+      ) : null}
+    </div>
+  );
+}
+
+export default function LookInfinitoLandingPage() {
+  return (
+    <div className="min-h-screen bg-[#fffaf7] text-stone-900">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+      />
+
+      <div className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(244,114,182,0.18),transparent_30%),radial-gradient(circle_at_top_right,rgba(251,191,36,0.18),transparent_28%),linear-gradient(to_bottom,#fffaf7,#fff5ef)]" />
+        <div className="absolute -left-24 top-24 h-72 w-72 rounded-full bg-rose-200/30 blur-3xl" />
+        <div className="absolute right-0 top-10 h-80 w-80 rounded-full bg-amber-200/30 blur-3xl" />
+
+        <header className="relative mx-auto flex max-w-7xl items-center justify-between px-6 py-6 lg:px-10">
+          <div>
+            <div className="text-xl font-semibold tracking-tight">Look Infinito</div>
+            <div className="text-sm text-stone-500">Peluquería y Estética · Barcelona</div>
+          </div>
+
+          <div className="hidden items-center gap-3 md:flex">
+            <Button asChild variant="outline" className="rounded-full border-stone-300 bg-white/70">
+              <a href={GOOGLE_MAPS_URL} target="_blank" rel="noreferrer">Cómo llegar</a>
+            </Button>
+            <Button asChild className="rounded-full bg-stone-900 text-white hover:bg-stone-800">
+              <a href={PHONE_LINK}>Llamar ahora</a>
+            </Button>
+          </div>
+        </header>
+
+        <section className="relative mx-auto grid max-w-7xl gap-10 px-6 pb-20 pt-6 lg:grid-cols-[1.15fr_0.85fr] lg:px-10 lg:pb-28 lg:pt-10">
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45 }}
+            className="flex flex-col justify-center"
+          >
+            <div className="mb-6 inline-flex w-fit items-center gap-2 rounded-full border border-rose-200 bg-white/80 px-4 py-2 text-sm text-stone-700 shadow-sm backdrop-blur">
+              <BadgeCheck className="h-4 w-4 text-rose-600" />
+              4,8/5 en Google · 64 reseñas
+            </div>
+
+            <h1 className="max-w-3xl text-4xl font-semibold leading-tight tracking-tight text-stone-950 md:text-6xl">
+              Belleza, color y cuidado capilar con estilo propio en Sant Gervasi.
+            </h1>
+
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-stone-600 md:text-xl">
+              Una landing pensada para transmitir confianza desde el primer segundo: servicios claros,
+              reseñas visibles, llamada a la acción inmediata y enfoque local para captar citas en Barcelona.
+            </p>
+
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <Button asChild size="lg" className="rounded-full bg-stone-900 px-7 text-white hover:bg-stone-800">
+                <a href={WHATSAPP_LINK} target="_blank" rel="noreferrer">
+                  Reservar por WhatsApp <ArrowRight className="ml-2 h-4 w-4" />
+                </a>
+              </Button>
+              <Button asChild size="lg" variant="outline" className="rounded-full border-stone-300 bg-white/80 px-7">
+                <a href={GOOGLE_MAPS_URL} target="_blank" rel="noreferrer">
+                  Ver ubicación
+                </a>
+              </Button>
+            </div>
+
+            <div className="mt-10 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+              {highlights.map((item) => (
+                <div
+                  key={item}
+                  className="flex items-center gap-3 rounded-2xl border border-stone-200/70 bg-white/75 px-4 py-4 shadow-sm backdrop-blur"
+                >
+                  <CheckCircle2 className="h-5 w-5 shrink-0 text-rose-600" />
+                  <span className="text-sm font-medium text-stone-700">{item}</span>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55, delay: 0.05 }}
+            className="grid gap-4 sm:grid-cols-2"
+          >
+            <Card className="overflow-hidden rounded-[2rem] border-white/70 bg-white/80 shadow-xl backdrop-blur sm:col-span-2">
+              <div className="grid gap-0 md:grid-cols-[1.05fr_0.95fr]">
+                <div className="relative min-h-[300px]">
+                  <img
+                    src={gallery[0].image}
+                    alt="Look Infinito Peluquería y Estética"
+                    className="h-full w-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-stone-950/25 via-transparent to-transparent" />
+                </div>
+                <CardContent className="flex flex-col justify-between p-7">
+                  <div>
+                    <p className="text-sm font-semibold uppercase tracking-[0.22em] text-rose-700/80">
+                      Look Infinito Peluquería y Estética
+                    </p>
+                    <h3 className="mt-3 text-2xl font-semibold tracking-tight text-stone-950">
+                      Un salón cercano, cuidado y orientado al resultado.
+                    </h3>
+                    <p className="mt-4 text-sm leading-7 text-stone-600">
+                      La propuesta combina peluquería y estética con foco en atención personalizada,
+                      coloración, mechas, corte, keratina y servicios complementarios de belleza.
+                    </p>
+                  </div>
+
+                  <div className="mt-6 space-y-3 text-sm text-stone-700">
+                    <div className="flex items-start gap-3">
+                      <MapPin className="mt-0.5 h-4 w-4 text-rose-600" />
+                      <span>Pg. de St. Gervasi, 36, 08022 Barcelona</span>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <Phone className="mt-0.5 h-4 w-4 text-rose-600" />
+                      <span>{PHONE}</span>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <Clock3 className="mt-0.5 h-4 w-4 text-rose-600" />
+                      <span>Consulta por teléfono o WhatsApp para confirmar disponibilidad y horario.</span>
+                    </div>
+                  </div>
+                </CardContent>
+              </div>
+            </Card>
+
+            {gallery.slice(1).map((item) => (
+              <Card key={item.title} className="overflow-hidden rounded-[2rem] border-white/70 bg-white/85 shadow-lg">
+                {item.image ? (
+                  <img src={item.image} alt={item.title} className="h-56 w-full object-cover" />
+                ) : (
+                  <div className="flex h-56 items-center justify-center bg-[linear-gradient(135deg,#fde7ef,#f6efe7,#fff4d8)] p-6 text-center">
+                    <div>
+                      <Sparkles className="mx-auto mb-3 h-8 w-8 text-rose-600" />
+                      <p className="text-lg font-semibold text-stone-900">Galería lista para crecer</p>
+                      <p className="mt-2 text-sm leading-6 text-stone-600">
+                        Sustituye este bloque por fotos reales de resultados, interior o equipo.
+                      </p>
+                    </div>
+                  </div>
+                )}
+                <CardContent className="p-5">
+                  <h4 className="text-lg font-semibold text-stone-950">{item.title}</h4>
+                  <p className="mt-2 text-sm leading-6 text-stone-600">{item.subtitle}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </motion.div>
+        </section>
+      </div>
+
+      <main>
+        <section className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
+          <SectionTitle
+            eyebrow="Servicios"
+            title="Lo que la gente busca en este tipo de salón, explicado con claridad."
+            text="La estructura está pensada para que un visitante entienda rápido qué hace el salón, qué lo diferencia y cómo reservar sin fricción."
+          />
+
+          <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+            {services.map((service) => {
+              const Icon = service.icon;
+              return (
+                <Card
+                  key={service.title}
+                  className="rounded-[2rem] border-stone-200/70 bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl"
+                >
+                  <CardContent className="p-7">
+                    <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-rose-50 text-rose-600">
+                      <Icon className="h-6 w-6" />
+                    </div>
+                    <h3 className="text-xl font-semibold tracking-tight text-stone-950">{service.title}</h3>
+                    <p className="mt-3 text-sm leading-7 text-stone-600">{service.text}</p>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
+        </section>
+
+        <section className="border-y border-stone-200/70 bg-white/70">
+          <div className="mx-auto grid max-w-7xl gap-10 px-6 py-20 lg:grid-cols-[0.9fr_1.1fr] lg:px-10">
+            <div>
+              <SectionTitle
+                eyebrow="Reseñas"
+                title="Prueba social real para aumentar confianza y reservas."
+                text="Se muestran opiniones que refuerzan el resultado, el trato y la sensación de salir contenta del salón."
+              />
+            </div>
+
+            <div className="grid gap-5 md:grid-cols-2">
+              {testimonials.map((item) => (
+                <Card key={item.name} className="rounded-[2rem] border-stone-200/70 bg-[#fffaf7] shadow-sm">
+                  <CardContent className="p-6">
+                    <div className="mb-4 flex items-center gap-1 text-amber-500">
+                      {Array.from({ length: 5 }).map((_, i) => (
+                        <Star key={i} className="h-4 w-4 fill-current" />
+                      ))}
+                    </div>
+                    <p className="text-sm leading-7 text-stone-700">“{item.quote}”</p>
+                    <div className="mt-5 flex items-center justify-between gap-4">
+                      <div>
+                        <p className="font-semibold text-stone-950">{item.name}</p>
+                        <p className="text-xs uppercase tracking-[0.2em] text-stone-500">{item.badge}</p>
+                      </div>
+                      <div className="rounded-full bg-rose-100 px-3 py-1 text-xs font-medium text-rose-700">
+                        Reseña
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
+          <div className="grid gap-12 lg:grid-cols-[1fr_0.95fr]">
+            <div>
+              <SectionTitle
+                eyebrow="Sobre el salón"
+                title="Un posicionamiento más premium sin perder cercanía."
+                text="El enfoque visual mezcla tonos cálidos, limpieza, legibilidad y llamadas a la acción muy visibles, siguiendo buenas prácticas de conversión para negocio local."
+              />
+
+              <div className="mt-8 grid gap-4 sm:grid-cols-2">
+                {[
+                  "Ambiente elegante y acogedor",
+                  "Atención profesional y personalizada",
+                  "Enfoque local para captar clientes de barrio",
+                  "Contenido optimizado para móvil",
+                  "CTA claros a llamada, WhatsApp y ubicación",
+                  "Bloques editables para añadir más fotos o precios",
+                ].map((item) => (
+                  <div
+                    key={item}
+                    className="flex items-center gap-3 rounded-2xl border border-stone-200 bg-white px-4 py-4"
+                  >
+                    <ChevronRight className="h-4 w-4 text-rose-600" />
+                    <span className="text-sm text-stone-700">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <Card className="rounded-[2rem] border-stone-200/70 bg-stone-950 text-white shadow-2xl">
+              <CardContent className="p-8 md:p-10">
+                <p className="text-sm font-semibold uppercase tracking-[0.25em] text-rose-200/90">
+                  Contacto rápido
+                </p>
+                <h3 className="mt-4 text-3xl font-semibold tracking-tight">
+                  Pide tu cita en menos de un minuto.
+                </h3>
+                <p className="mt-4 text-sm leading-7 text-stone-300">
+                  Esta zona está diseñada para convertir: teléfono visible, WhatsApp directo y acceso a mapas con un solo clic.
+                </p>
+
+                <div className="mt-8 space-y-4">
+                  <a
+                    href={PHONE_LINK}
+                    className="flex items-center justify-between rounded-2xl bg-white/10 px-5 py-4 transition hover:bg-white/15"
+                  >
+                    <div className="flex items-center gap-3">
+                      <Phone className="h-5 w-5 text-rose-200" />
+                      <div>
+                        <p className="text-sm text-stone-300">Llámanos</p>
+                        <p className="font-semibold">{PHONE}</p>
+                      </div>
+                    </div>
+                    <ArrowRight className="h-4 w-4" />
+                  </a>
+
+                  <a
+                    href={WHATSAPP_LINK}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex items-center justify-between rounded-2xl bg-white/10 px-5 py-4 transition hover:bg-white/15"
+                  >
+                    <div className="flex items-center gap-3">
+                      <MessageCircle className="h-5 w-5 text-rose-200" />
+                      <div>
+                        <p className="text-sm text-stone-300">WhatsApp</p>
+                        <p className="font-semibold">Escríbenos para reservar</p>
+                      </div>
+                    </div>
+                    <ArrowRight className="h-4 w-4" />
+                  </a>
+
+                  <a
+                    href={`mailto:${EMAIL}`}
+                    className="flex items-center justify-between rounded-2xl bg-white/10 px-5 py-4 transition hover:bg-white/15"
+                  >
+                    <div className="flex items-center gap-3">
+                      <Mail className="h-5 w-5 text-rose-200" />
+                      <div>
+                        <p className="text-sm text-stone-300">Email</p>
+                        <p className="font-semibold break-all">{EMAIL}</p>
+                      </div>
+                    </div>
+                    <ArrowRight className="h-4 w-4" />
+                  </a>
+
+                  <a
+                    href={GOOGLE_MAPS_URL}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex items-center justify-between rounded-2xl bg-white/10 px-5 py-4 transition hover:bg-white/15"
+                  >
+                    <div className="flex items-center gap-3">
+                      <MapPin className="h-5 w-5 text-rose-200" />
+                      <div>
+                        <p className="text-sm text-stone-300">Dirección</p>
+                        <p className="font-semibold">Pg. de St. Gervasi, 36 · Barcelona</p>
+                      </div>
+                    </div>
+                    <ArrowRight className="h-4 w-4" />
+                  </a>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+
+        <section className="bg-[linear-gradient(180deg,#fff5ef_0%,#fffaf7_100%)]">
+          <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
+            <SectionTitle
+              eyebrow="Preguntas frecuentes"
+              title="Contenido útil para SEO local y para resolver dudas antes de reservar."
+              text="Estas preguntas ayudan tanto al usuario como al posicionamiento del negocio en búsquedas de peluquería en Barcelona."
+            />
+
+            <div className="mt-10 grid gap-5 lg:grid-cols-2">
+              {faqs.map((item) => (
+                <Card key={item.q} className="rounded-[2rem] border-stone-200/70 bg-white shadow-sm">
+                  <CardContent className="p-7">
+                    <h3 className="text-lg font-semibold text-stone-950">{item.q}</h3>
+                    <p className="mt-3 text-sm leading-7 text-stone-600">{item.a}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
+          <Card className="overflow-hidden rounded-[2rem] border-none bg-[linear-gradient(135deg,#141210,#2b2521,#5a3143)] text-white shadow-2xl">
+            <CardContent className="grid gap-8 p-8 md:grid-cols-[1.15fr_0.85fr] md:p-12">
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-[0.25em] text-rose-200/90">
+                  CTA final
+                </p>
+                <h2 className="mt-4 text-3xl font-semibold tracking-tight md:text-5xl">
+                  Haz que la próxima visita empiece aquí.
+                </h2>
+                <p className="mt-5 max-w-2xl text-base leading-8 text-stone-200 md:text-lg">
+                  Una web limpia, elegante y preparada para generar confianza. Ideal como base para publicar,
+                  conectar un formulario, añadir Instagram, integrar reservas o mejorar el SEO local del salón.
+                </p>
+              </div>
+
+              <div className="flex flex-col justify-center gap-4">
+                <Button asChild size="lg" className="rounded-full bg-white text-stone-950 hover:bg-stone-100">
+                  <a href={WHATSAPP_LINK} target="_blank" rel="noreferrer">
+                    Reservar cita ahora
+                  </a>
+                </Button>
+                <Button asChild size="lg" variant="outline" className="rounded-full border-white/30 bg-white/10 text-white hover:bg-white/15">
+                  <a href={GOOGLE_MAPS_URL} target="_blank" rel="noreferrer">
+                    Ver cómo llegar
+                  </a>
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        </section>
+      </main>
+
+      <footer className="border-t border-stone-200 bg-white/80 backdrop-blur">
+        <div className="mx-auto flex max-w-7xl flex-col gap-4 px-6 py-8 text-sm text-stone-500 md:flex-row md:items-center md:justify-between lg:px-10">
+          <div>
+            <p className="font-semibold text-stone-800">Look Infinito Peluquería y Estética</p>
+            <p>Pg. de St. Gervasi, 36 · 08022 Barcelona · {PHONE}</p>
+          </div>
+          <div className="flex flex-wrap items-center gap-4">
+            <a href={PHONE_LINK} className="hover:text-stone-900">Llamar</a>
+            <a href={WHATSAPP_LINK} target="_blank" rel="noreferrer" className="hover:text-stone-900">
+              WhatsApp
+            </a>
+            <a href={GOOGLE_MAPS_URL} target="_blank" rel="noreferrer" className="hover:text-stone-900">
+              Ubicación
+            </a>
+          </div>
+        </div>
+      </footer>
+
+      <div className="fixed inset-x-0 bottom-4 z-50 px-4 md:hidden">
+        <div className="mx-auto flex max-w-lg items-center gap-3 rounded-full border border-stone-200 bg-white/95 p-2 shadow-2xl backdrop-blur">
+          <Button asChild className="h-12 flex-1 rounded-full bg-stone-900 text-white hover:bg-stone-800">
+            <a href={PHONE_LINK}>Llamar</a>
+          </Button>
+          <Button asChild className="h-12 flex-1 rounded-full bg-rose-600 text-white hover:bg-rose-700">
+            <a href={WHATSAPP_LINK} target="_blank" rel="noreferrer">
+              WhatsApp
+            </a>
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+}
