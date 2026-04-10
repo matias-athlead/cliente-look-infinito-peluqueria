@@ -226,12 +226,43 @@
     }
 
     .ghost-btn{
-      padding:11px 14px;
+      width:48px;
+      height:48px;
+      padding:0;
       border-radius:999px;
       border:1px solid rgba(72,40,57,.15);
       background:#fff;
       font-weight:900;
       cursor:pointer;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow:0 8px 18px rgba(72,40,57,.06);
+    }
+
+    .ghost-btn svg,
+    .wa-icon-btn svg{
+      width:22px;
+      height:22px;
+    }
+
+    .wa-icon-btn{
+      width:52px;
+      height:52px;
+      padding:0;
+      border-radius:999px;
+      border:1px solid rgba(72,40,57,.14);
+      background:#fff;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      color:#25D366;
+      box-shadow:0 12px 24px rgba(64,38,49,.08);
+    }
+
+    .wa-icon-btn:hover,
+    .ghost-btn:hover{
+      transform:translateY(-1px);
     }
 
     @media (max-width:980px){
@@ -956,6 +987,51 @@
       .contact-box{grid-template-columns:1fr}
     }
 
+    .map-card{
+      border:1px solid var(--stroke);
+      border-radius:var(--radius);
+      overflow:hidden;
+      background:#fff;
+      box-shadow:0 14px 40px rgba(64,38,49,.06);
+      margin-bottom:14px;
+    }
+
+    .map-card iframe{
+      width:100%;
+      height:360px;
+      border:0;
+      display:block;
+    }
+
+    .map-card-body{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      padding:16px;
+      flex-wrap:wrap;
+    }
+
+    .map-card-body p{
+      margin:0;
+      color:var(--muted);
+      font-weight:750;
+      line-height:1.6;
+      font-size:13px;
+    }
+
+    .map-link-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:12px 16px;
+      border-radius:999px;
+      background:var(--btn);
+      color:#fff;
+      font-weight:1000;
+      box-shadow:0 12px 24px rgba(64,38,49,.14);
+    }
+
     footer{
       margin-top:28px;
       padding:18px 0 8px;
@@ -1230,7 +1306,9 @@
       whatsappNumber: "34625501039",
       whatsappDisplay: "+34 625 50 10 39",
       email: "yanirapaniaguard@gotmail.com",
-      address: "Barcelona",
+      address: "Pg. de St. Gervasi, 36, Sarrià-Sant Gervasi, 08022 Barcelona",
+      mapsUrl: "https://google.com/maps?rlz=1C1UEAD_esES1117ES1117&gs_lcrp=EgZjaHJvbWUqEAgBEC4YrwEYxwEYgAQYjgUyCggAEAAY4wIYgAQyEAgBEC4YrwEYxwEYgAQYjgUyCggCEAAYChgWGB4yCAgDEAAYFhgeMggIBBAAGBYYHjIGCAUQRRg8MgYIBhBFGDwyBggHEEUYPNIBCDQ1ODNqMGo3qAIIsAIB8QUlRrcmlP4aLw&um=1&ie=UTF-8&fb=1&gl=es&sa=X&geocode=KYXtpZuEmaQSMUcG3xsgvXPU&daddr=Pg.+de+St.+Gervasi,+36,+Sarri%C3%A0-Sant+Gervasi,+08022+Barcelona",
+      mapsEmbed: "https://www.google.com/maps?q=Pg.+de+St.+Gervasi,+36,+Sarri%C3%A0-Sant+Gervasi,+08022+Barcelona&z=16&output=embed",
       instagram: "https://www.instagram.com/lookinfinito",
       facebook: "https://www.facebook.com/lookinfinito",
       tiktok: "https://www.tiktok.com/@lookinfinito",
@@ -1251,17 +1329,18 @@
         <div class="brand">Look Infinito</div>
 
         <nav class="nav-links" aria-label="Primary">
-          <a href="#home" data-scroll="home">INICIO</a>
           <a href="#servicios" data-scroll="servicios">SERVICIOS</a>
           <a href="#galeria" data-scroll="galeria">GALERÍA</a>
-          <a href="#social" data-scroll="social">REDES</a>
           <a href="#resenas" data-scroll="resenas">RESEÑAS</a>
-          <a href="#reservas" data-scroll="reservas">RESERVAS</a>
-          <a href="#contacto" data-scroll="contacto">CONTACTO</a>
+          <a href="#social" data-scroll="social">REDES</a>
         </nav>
 
         <div class="top-actions">
-          <a class="ghost-btn" id="headerWhatsapp" href="#" target="_blank" rel="noopener">WhatsApp</a>
+          <a class="ghost-btn" id="headerWhatsapp" href="#" target="_blank" rel="noopener" aria-label="WhatsApp">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M20.52 3.48A11.86 11.86 0 0 0 12.05 0C5.56 0 .27 5.3.27 11.81c0 2.08.55 4.12 1.58 5.91L0 24l6.47-1.7a11.73 11.73 0 0 0 5.58 1.42h.01c6.49 0 11.78-5.3 11.78-11.81 0-3.15-1.23-6.11-3.32-8.43ZM12.06 21.7h-.01a9.74 9.74 0 0 1-4.96-1.35l-.36-.21-3.84 1.01 1.03-3.75-.24-.39a9.83 9.83 0 0 1-1.5-5.19C2.18 6.42 6.6 2 12.05 2c2.61 0 5.07 1.02 6.92 2.89a9.7 9.7 0 0 1 2.87 6.92c0 5.4-4.41 9.89-9.78 9.89Zm5.37-7.37c-.29-.15-1.73-.85-2-.94-.27-.1-.46-.15-.66.15-.19.29-.75.94-.92 1.14-.17.19-.34.22-.63.07-.29-.15-1.21-.45-2.31-1.44-.86-.77-1.43-1.72-1.6-2.01-.17-.29-.02-.45.13-.59.13-.13.29-.34.44-.51.15-.17.2-.29.29-.48.1-.19.05-.36-.02-.51-.08-.15-.66-1.59-.9-2.17-.24-.58-.48-.5-.66-.5h-.56c-.19 0-.51.07-.77.36-.26.29-1 1-.96 2.42.05 1.43 1.03 2.82 1.18 3.01.15.19 2.03 3.12 5.03 4.25.71.24 1.27.39 1.7.49.71.15 1.36.13 1.87.08.57-.06 1.73-.71 1.97-1.39.24-.68.24-1.27.17-1.39-.07-.12-.27-.19-.56-.34Z"></path>
+            </svg>
+          </a>
           <button class="action-btn" type="button" data-scroll-btn="reservas">Reservar</button>
         </div>
       </header>
@@ -1302,7 +1381,11 @@
             </p>
             <div class="hero-ctas">
               <button class="btn primary" type="button" data-scroll-btn="reservas">Reservar cita</button>
-              <a class="btn" id="talkBtn" href="#" target="_blank" rel="noopener">Hablar por WhatsApp</a>
+              <a class="wa-icon-btn" id="talkBtn" href="#" target="_blank" rel="noopener" aria-label="WhatsApp">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M20.52 3.48A11.86 11.86 0 0 0 12.05 0C5.56 0 .27 5.3.27 11.81c0 2.08.55 4.12 1.58 5.91L0 24l6.47-1.7a11.73 11.73 0 0 0 5.58 1.42h.01c6.49 0 11.78-5.3 11.78-11.81 0-3.15-1.23-6.11-3.32-8.43ZM12.06 21.7h-.01a9.74 9.74 0 0 1-4.96-1.35l-.36-.21-3.84 1.01 1.03-3.75-.24-.39a9.83 9.83 0 0 1-1.5-5.19C2.18 6.42 6.6 2 12.05 2c2.61 0 5.07 1.02 6.92 2.89a9.7 9.7 0 0 1 2.87 6.92c0 5.4-4.41 9.89-9.78 9.89Zm5.37-7.37c-.29-.15-1.73-.85-2-.94-.27-.1-.46-.15-.66.15-.19.29-.75.94-.92 1.14-.17.19-.34.22-.63.07-.29-.15-1.21-.45-2.31-1.44-.86-.77-1.43-1.72-1.6-2.01-.17-.29-.02-.45.13-.59.13-.13.29-.34.44-.51.15-.17.2-.29.29-.48.1-.19.05-.36-.02-.51-.08-.15-.66-1.59-.9-2.17-.24-.58-.48-.5-.66-.5h-.56c-.19 0-.51.07-.77.36-.26.29-1 1-.96 2.42.05 1.43 1.03 2.82 1.18 3.01.15.19 2.03 3.12 5.03 4.25.71.24 1.27.39 1.7.49.71.15 1.36.13 1.87.08.57-.06 1.73-.71 1.97-1.39.24-.68.24-1.27.17-1.39-.07-.12-.27-.19-.56-.34Z"></path>
+                </svg>
+              </a>
             </div>
           </div>
 
@@ -1520,33 +1603,6 @@
           </div>
         </section>
 
-        <section class="section" id="social">
-          <h2>Redes sociales</h2>
-          <p class="lead">Síguenos en redes y descubre trabajos, looks y novedades del salón.</p>
-
-          <div class="social-icons-wrap">
-            <a class="social-icon-btn" id="instagramLink" href="#" target="_blank" rel="noopener" aria-label="Instagram">
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.8"></rect>
-                <circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.8"></circle>
-                <circle cx="17.2" cy="6.8" r="1.1" fill="currentColor"></circle>
-              </svg>
-            </a>
-
-            <a class="social-icon-btn" id="tiktokLink" href="#" target="_blank" rel="noopener" aria-label="TikTok">
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M14.5 3c.5 2 1.9 3.7 4 4.4v2.8c-1.4 0-2.7-.4-4-1.1v5.7a5.2 5.2 0 1 1-5.2-5.2c.3 0 .6 0 .9.1v2.9a2.5 2.5 0 1 0 1.6 2.3V3h2.7Z"></path>
-              </svg>
-            </a>
-
-            <a class="social-icon-btn" id="facebookLink" href="#" target="_blank" rel="noopener" aria-label="Facebook">
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M13.5 21v-7h2.3l.4-2.8h-2.7V9.4c0-.8.2-1.4 1.4-1.4h1.5V5.5c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8v2h-2.5V14H10.5v7h3Z"></path>
-              </svg>
-            </a>
-          </div>
-        </section>
-
         <section class="section" id="resenas">
           <h2>Reseñas</h2>
           <p class="lead">Espacio preparado para mostrar prueba social y transmitir confianza al cliente nuevo.</p>
@@ -1570,10 +1626,50 @@
           </div>
         </section>
 
+        <section class="section" id="social" style="padding-top:18px;">
+          <div class="social-icons-wrap">
+            <a class="social-icon-btn" id="instagramLink" href="#" target="_blank" rel="noopener" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.8"></rect>
+                <circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.8"></circle>
+                <circle cx="17.2" cy="6.8" r="1.1" fill="currentColor"></circle>
+              </svg>
+            </a>
+
+            <a class="social-icon-btn" id="tiktokLink" href="#" target="_blank" rel="noopener" aria-label="TikTok">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M14.5 3c.5 2 1.9 3.7 4 4.4v2.8c-1.4 0-2.7-.4-4-1.1v5.7a5.2 5.2 0 1 1-5.2-5.2c.3 0 .6 0 .9.1v2.9a2.5 2.5 0 1 0 1.6 2.3V3h2.7Z"></path>
+              </svg>
+            </a>
+
+            <a class="social-icon-btn" id="facebookLink" href="#" target="_blank" rel="noopener" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M13.5 21v-7h2.3l.4-2.8h-2.7V9.4c0-.8.2-1.4 1.4-1.4h1.5V5.5c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8v2h-2.5V14H10.5v7h3Z"></path>
+              </svg>
+            </a>
+          </div>
+        </section>
 
         <section class="section" id="contacto">
           <h2>Contacto</h2>
           <p class="lead">Todos los canales principales del negocio reunidos en un solo bloque.</p>
+
+          <div class="map-card">
+            <iframe
+              id="mapFrame"
+              src=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Mapa de Look Infinito">
+            </iframe>
+            <div class="map-card-body">
+              <div>
+                <p style="font-weight:1000;color:#402631;margin-bottom:4px;">Dónde estamos</p>
+                <p id="addressText">Pg. de St. Gervasi, 36, Sarrià-Sant Gervasi, 08022 Barcelona</p>
+              </div>
+              <a class="map-link-btn" id="mapsLink" href="#" target="_blank" rel="noopener">Abrir en Google Maps</a>
+            </div>
+          </div>
 
           <div class="contact-box">
             <div class="card">
@@ -1594,8 +1690,8 @@
 
             <div class="card">
               <h3>Ubicación</h3>
-              <p>Ciudad o zona del negocio.</p>
-              <div style="margin-top:12px;font-weight:1000;">Barcelona</div>
+              <p>Dirección del salón.</p>
+              <div id="locationText" style="margin-top:12px;font-weight:1000;">Pg. de St. Gervasi, 36, Sarrià-Sant Gervasi, 08022 Barcelona</div>
             </div>
           </div>
 
@@ -1614,7 +1710,7 @@
   </div>
 
   <div class="fab-wrap">
-    <a class="fab reserve" href="#reservas">Reservar</a>
+    <button class="fab reserve" type="button" data-scroll-btn="reservas">Reservar</button>
     <a class="fab wa" id="floatingWa" href="#" target="_blank" rel="noopener" aria-label="WhatsApp">
       <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
         <path d="M20.52 3.48A11.86 11.86 0 0 0 12.05 0C5.56 0 .27 5.3.27 11.81c0 2.08.55 4.12 1.58 5.91L0 24l6.47-1.7a11.73 11.73 0 0 0 5.58 1.42h.01c6.49 0 11.78-5.3 11.78-11.81 0-3.15-1.23-6.11-3.32-8.43ZM12.06 21.7h-.01a9.74 9.74 0 0 1-4.96-1.35l-.36-.21-3.84 1.01 1.03-3.75-.24-.39a9.83 9.83 0 0 1-1.5-5.19C2.18 6.42 6.6 2 12.05 2c2.61 0 5.07 1.02 6.92 2.89a9.7 9.7 0 0 1 2.87 6.92c0 5.4-4.41 9.89-9.78 9.89Zm5.37-7.37c-.29-.15-1.73-.85-2-.94-.27-.1-.46-.15-.66.15-.19.29-.75.94-.92 1.14-.17.19-.34.22-.63.07-.29-.15-1.21-.45-2.31-1.44-.86-.77-1.43-1.72-1.6-2.01-.17-.29-.02-.45.13-.59.13-.13.29-.34.44-.51.15-.17.2-.29.29-.48.1-.19.05-.36-.02-.51-.08-.15-.66-1.59-.9-2.17-.24-.58-.48-.5-.66-.5h-.56c-.19 0-.51.07-.77.36-.26.29-1 1-.96 2.42.05 1.43 1.03 2.82 1.18 3.01.15.19 2.03 3.12 5.03 4.25.71.24 1.27.39 1.7.49.71.15 1.36.13 1.87.08.57-.06 1.73-.71 1.97-1.39.24-.68.24-1.27.17-1.39-.07-.12-.27-.19-.56-.34Z"></path>
@@ -1631,6 +1727,7 @@
       </div>
       <div class="cookie-actions">
         <button id="cookieSettingsBtn" type="button">Configurar</button>
+        <button id="cookieEssentialOnly" type="button">Aceptar solo cookies técnicas</button>
         <button class="accept" id="cookieAccept" type="button">Aceptar y continuar</button>
       </div>
     </div>
@@ -1709,6 +1806,8 @@
     function scrollToId(id){
       const el = document.getElementById(id);
       if(!el) return;
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
       const y = el.getBoundingClientRect().top + window.pageYOffset - getHeaderOffset();
       window.scrollTo({ top:y, behavior:"smooth" });
     }
@@ -1730,6 +1829,14 @@
       $("#instagramLink").href = CONFIG.instagram;
       $("#facebookLink").href = CONFIG.facebook;
       $("#tiktokLink").href = CONFIG.tiktok;
+      const addressText = $("#addressText");
+      const locationText = $("#locationText");
+      const mapFrame = $("#mapFrame");
+      const mapsLink = $("#mapsLink");
+      if(addressText) addressText.textContent = CONFIG.address;
+      if(locationText) locationText.textContent = CONFIG.address;
+      if(mapFrame) mapFrame.src = CONFIG.mapsEmbed;
+      if(mapsLink) mapsLink.href = CONFIG.mapsUrl;
     }
 
     const topNav = document.querySelector("#topbar .nav-links");
@@ -2059,6 +2166,7 @@
     const CONSENT_KEY = "lookinfinito_cookie_consent";
     const cookieBanner = $("#cookieBanner");
     const cookieAccept = $("#cookieAccept");
+    const cookieEssentialOnly = $("#cookieEssentialOnly");
     const cookieSettingsBtn = $("#cookieSettingsBtn");
     const toggleAnalytics = $("#toggleAnalytics");
     const toggleMarketing = $("#toggleMarketing");
@@ -2105,6 +2213,19 @@
       syncCookieToggles();
     }
 
+    function acceptEssentialOnlyCookies(){
+      const consent = {
+        essential: true,
+        analytics: false,
+        marketing: false,
+        ts: new Date().toISOString()
+      };
+      setConsent(consent);
+      tempConsent = { ...consent };
+      cookieBanner.classList.remove("show");
+      syncCookieToggles();
+    }
+
     function syncCookieToggles(){
       const consent = getConsent();
       if(consent){
@@ -2123,6 +2244,7 @@
     }
 
     cookieAccept.addEventListener("click", acceptAllCookies);
+    cookieEssentialOnly.addEventListener("click", acceptEssentialOnlyCookies);
     cookieSettingsBtn.addEventListener("click", ()=> openPolicy("cookieSettings"));
 
     toggleAnalytics.addEventListener("click", ()=>{
